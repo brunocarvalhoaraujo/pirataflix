@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Play</title>
+</head>
+
+<style>
+    @import url('../scroll.css');
+    @import url('https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap');
+
+    * {
+        margin: 0px;
+        padding: 0px;
+        font-size: 18px;
+        font-family: Segoe UI, Arial, Helvetica, Verdana, sans-serif;
+        font-weight: 700;
+        font-size: 10pt;
+        color: #a8a8b3;
+    }
+
+    body {
+        background-color: #000;
+        overflow-x: hidden;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+
+
+    .boxDetalhes {
+        background: #000;
+    }
+
+
+
+    .boxTreilesYoutube {
+        background: #000;
+        margin-top: -20px;
+    }
+
+
+
+    .box-titleRenders p {
+        font-size: 22px;
+        margin-left: 20px;
+    }
+
+    .boxrenderTXTs {
+        margin-top: -5px;
+    }
+
+    @media screen and (max-width: 400px) {
+        .box-titleRenders p {
+            font-size: 15px;
+        }
+
+        .m-sinop {
+            width: 90%;
+            font-size: 11px;
+        }
+
+        .boxrenderTXTs {
+            margin-top: 20px;
+        }
+    }
+
+    .img-blur {
+        transition: 0.5s;
+    }
+
+    .img-blur:hover {
+        filter: blur(2px);
+        cursor: pointer;
+        transition: 0.5s;
+        transform: scale(110%);
+    }
+
+
+
+    .skeleton {}
+
+    .skeleton::after {
+        content: "";
+        justify-content: center;
+        align-items: center;
+        display: flex;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, #181D23, #101418, #181D23);
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        z-index: 9999;
+        animation: 1s skeleton infinite;
+    }
+
+    @keyframes skeleton {
+        0% {
+            background-position: -1000px;
+        }
+
+        100% {
+            background-position: 1000px;
+        }
+    }
+
+    .barra {
+        background: rgb(131, 58, 180);
+        background: linear-gradient(90deg, rgba(131, 58, 180, 1) 0%, rgba(253, 29, 29, 1) 50%, rgba(252, 176, 69, 1) 100%);
+    }
+</style>
+
+<body id="body" class="skeleton">
+
+    <style>
+        .Menu {
+            -webkit-box-shadow: 0px 0px 47px 23px rgba(0, 0, 0, 1);
+            -moz-box-shadow: 0px 0px 47px 23px rgba(0, 0, 0, 1);
+            box-shadow: 0px 0px 47px 23px rgba(0, 0, 0, 1);
+
+        }
+
+        .icone {
+            transition: 0.5s;
+        }
+
+        .icone:hover {
+            transform: scale(1.1);
+            transition: 0.5s;
+            opacity: 0.8;
+            filter: blur(1px);
+        }
+    </style>
+    <div class="Menu"
+        style="position: fixed;  z-index: 999999; right: 0px; top: 0px; display: flex; justify-content: center; align-items: center; background-color: #000;">
+
+        <div class="boxLogo" onclick="window.location.href='../home/'"
+            style="cursor: pointer; width: 50vw; height: auto; background-color: rgb(255, 255, 255); border-radius: 10px 0 0 10px; background-color: #000; justify-content: start; align-items: center; display: flex;">
+            <img src="./img/logo.png" alt="" style="height: 35px; margin-left: 15px;">
+            <h2 class="" onclick="window.location.href='../home/'"
+                style="font-size: 20px;  font-family: 'Pixelify Sans', sans-serif; color: #F1F1F1;">
+                PIRATAFLIX</h2>
+        </div>
+
+        <div class="boxIcones"
+            style="width: 50vw; height: auto; background-color: rgb(255, 255, 255); border-radius: 10px 0 0 10px; background-color: #000; justify-content: flex-end; display: flex; filter: grayscale(1);">
+
+            <div class="icone" onclick="window.location.href='../home/'"
+                style="width: 35px; height: 35px; border-radius: 10px; display: flex; flex-direction: column; align-items: center; justify-content: center; cursor: pointer; margin: 6px;">
+                <img src="./icon/home.png" alt="" style="height: 90%; border-radius: 50%;">
+            </div>
+            <div class="icone" onclick="window.location.href='../buscar/'"
+                style="width: 35px; height: 35px; border-radius: 10px; display: flex; flex-direction: column; align-items: center; justify-content: center; cursor: pointer; margin: 6px;">
+                <img src="./icon/seach.png" alt="" style="height: 90%; border-radius: 50%;">
+            </div>
+        </div>
+    </div>
+
+    <div class="box-titleRenders"
+        style="width: 100vw; display: flex; justify-content: start; align-items: center; margin-top: 80px;">
+        <p style="margin-top: 15px;"></p>
+    </div>
+
+    <div id="renderdetalhesFilme" class="boxDetalhes"
+        style="width: 100vw; display: flex; justify-content: center; align-items: center; width: 100%; height: auto; padding-top: 30px; padding-bottom: 30px;">
+
+        <!-- <div class="boxrenderDetalhes" style='display: flex; flex-wrap: wrap;'>
+
+            <div class="boxrenderCapa"><img class="img-blur" style="border-radius: 15px; height: 300px; margin-left: 20px;"
+                    src="https://media.themoviedb.org/t/p/w300_and_h450_bestv2/fIEjqQnnkxwUH102XU9R3QwRGEu.jpg" alt="">
+            </div>
+
+
+            <div class="boxrenderTXTs"
+                style="margin-left: 20px; max-width: 350px; display: flex; flex-direction: column; justify-content: start;">
+                <div class="box1">
+                    <p style="font-size: 28px;">Guerra Civil <i>(2024)</i></p>
+                    <p>18-04-2024 (BR)</p>
+                    <p>Guerra, Ação, Drama</p>
+                </div>
+                <div class="box2" style="margin-top: 10px;">
+
+                    <p style="font-size: 10px;">Classificação Geral : </p>
+
+                    <div class="box-nota" style="display: flex; align-items: center; margin-top: 10px;">
+                        <div class="nota-radius"
+                            style="background-color:#032541; width: 40px; height: 40px; border-radius: 50%; display: flex; justify-content: center; align-items: center; position: relative; overflow: hidden;">
+                            <div class="barra"
+                                style="background-color: #21D07A; height: 81%; width: 120%; position: absolute; bottom: 0px; left: 0px; transform: rotate(-35deg);">
+                            </div>
+                            <div class="box"
+                                style="background-color:#181D23; width: 85%; height: 85%; border-radius: 50%; display: flex; align-items: center; justify-content: center; z-index: 99;">
+                                <div class="number" style="font-size: 16px;">
+                                    79
+                                </div>
+                                <div class="porcent" style="font-size: 8px; margin-top: -5px;">
+                                    %
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="m-sinop" style="margin-top: 20px;">Num futuro próximo, um grupo de jornalista atravessa os
+                        Estados Unidos durante uma guerra civil que apanhou a nação inteira de surpresa.</p>
+
+                </div>
+            </div>
+
+        </div> -->
+
+
+    </div>
+
+
+    <div id="renderPlayer" class="boxTreilesYoutube"
+        style="width: 100vw; display: flex; flex-direction: column; justify-content: center; align-items: center; width: 100%; height: auto; padding-top: 30px; padding-bottom: 30px;">
+
+        <!-- <div class="box-titleRenders">
+            <p style=" margin-top: 15px;">Trailer</p>
+        </div>
+        <iframe
+            style="width: 100%; max-width: 250px; min-height: 200px; background-color: #21D07A; opacity: 0.5; border-radius: 10px; margin-top: 10px;"
+            src="https://www.youtube.com/embed/i6avfCqKcQo?si=-3OnrlDmhDDWW64r&amp&controls=0"
+            title="YouTube video player" frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
+        </iframe> -->
+        <!-- <div class="box-titleRenders" style="display: flex; flex-direction: column; align-items: center;">
+            <p style=" margin-top: 15px; color: #21D07A;">Filme Completo </p>
+            <p style=" font-size: 10px;">Inicie o play e assista grátis </p>
+            <p style=" font-size: 15px; margin-top: 10px;">👇</p>
+
+        </div>-->
+        <!-- <div class="img-blur"
+            style="width: 100%; max-width: 550px; min-height: 250px; border-radius: 10px; margin-top: 20px; cursor: pointer;">
+            <img src="./img/midaPlayer.png" alt="" style="width: 100%;">
+
+        </div> -->
+    </div>
+
+
+    <div id="" class="boxTreilesYoutube"
+        style="width: 100vw; display: flex; flex-direction: column; justify-content: center; align-items: center; width: 100%; height: auto; padding-top: 30px; padding-bottom: 30px;">
+
+        <div class="box-titleRenders" style="display: flex; flex-direction: column; align-items: center;">
+            <p style=" margin-top: 15px; color: #892ec1;">OU PREMIUM </p>
+            <p style=" font-size: 25px; margin-top: 15px; color: #892ec1;">🔥Assista Sem Interrupção! </p>
+            <p style=" font-size: 20px; color: #06af71;;">com 50% de desconto hoje.</p>
+        </div>
+
+        <div class="" onclick="window.location.href=('')"
+            style="width: 80%; max-width: 550px; min-height: 250px; border-radius: 10px; margin-top: 20px; cursor: pointer;">
+            <img src="./img/criativo.png" alt="" style="width: 100%;">
+
+            <p style=" margin-top: 20px; font-size: 13px;"> Todos Filmes e Séries Sem limites. </p>
+            <p style="  font-size: 10px;"><a href="" style="color: #06af71;">Click aqui para falar com um atendente! </a> </p>
+        </div>
+    </div>
+
+
+
+
+
+    <div class="box-titleRenders" style="width: 100vw; display: flex; justify-content: start; align-items: center;">
+        <p style=" margin-top: 15px; font-family: 'Pixelify Sans', sans-serif;">🎯 SEMILAR:</p>
+    </div>
+    <div class="boxRenderTreiles"
+        style=" width: 100vw; display: flex; justify-content: start; align-items: center; flex-wrap: wrap; width: 100%; /*background-color: #21D07A; */overflow-x: scroll;">
+
+        <div id="boxRenderMaisvotados" class="rendercapas"
+            style=" display: flex; /* background-color: red; */ margin-top: 15px;">
+
+            <div class="capa" style="height: 210px; width: 120px; margin: 10px;">
+                <div class="boxIMG" style="width: 100%; height: 140px; overflow: hidden; border-radius: 10px;">
+                    <img src="./img/harry.jpg" alt="" style="width: 100%;">
+                </div>
+
+                <div class="box-nota" style="">
+                    <div class="nota-radius"
+                        style="background-color:#032541; width: 50px; height: 50px; border-radius: 50%; display: flex; justify-content: center; align-items: center; position: relative; overflow: hidden;">
+                        <div class="barra"
+                            style="background-color: #21D07A; height: 20%; width: 120%; position: absolute; bottom: 0px; left: 0px; transform: rotate(-35deg);">
+                        </div>
+                        <div class="box"
+                            style="background-color:#181D23; width: 90%; height: 90%; border-radius: 50%; display: flex; align-items: center; justify-content: center; z-index: 99;">
+                            <div class="number" style="font-size: 15px;">
+                                75
+                            </div>
+                            <div class="porcent" style="font-size: 8px;">
+                                %
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="boxLegenda" style="padding: 5px; margin-top: 8px;">
+                    <span>
+                        <p>Caça-Fantasmas: O Império do Gelo</p>
+                        <p style="font-weight: 100; font-size: 12px;">2007</p>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        window.addEventListener('load', () => {
+            let body = document.getElementById('body');
+
+            setTimeout(() => {
+                body.classList.remove('skeleton')
+            }, 1000);
+
+        });
+
+
+        let idFilme = window.location.hash.replace('#', '');
+        getDetalhes(idFilme);
+
+        getSimilar(idFilme);
+
+        function getDetalhes(filtro) {
+            let ajax = new XMLHttpRequest();
+            ajax.open('GET', `https://api.themoviedb.org/3/movie/${filtro}?language=pt&page=1&api_key=9ad6ab6d85229f1eea1b1ca48f55b4b9`);
+            ajax.onreadystatechange = () => {
+                if (ajax.readyState == 4 && ajax.status == 200) {
+                    console.log(JSON.parse(ajax.response));
+
+                    let resposta = JSON.parse(ajax.response);
+
+                    let renderdetalhesFilme = document.getElementById('renderdetalhesFilme');
+                    renderdetalhesFilme.innerHTML = `
+                    <div class="boxrenderDetalhes" style='display: flex; flex-wrap: wrap;'>
+
+                        <div class="boxrenderCapa"><img class="img-blur" style="border-radius: 15px; height: 300px; margin-left: 20px;"
+                                src="https://media.themoviedb.org/t/p/w300_and_h450_bestv2${resposta.poster_path}" alt="">
+                        </div>
+
+
+                        <div class="boxrenderTXTs"
+                            style="margin-left: 20px; max-width: 350px; display: flex; flex-direction: column; justify-content: start; margin-top: 15px;">
+                            <div class="box1">
+                                <p class="m-sinop" style="font-size: 28px;">${resposta.title} <i>(${resposta.release_date.substr(0, 4)})</i></p>
+                                <p>${resposta.genres[0].name} </p>
+                                <p style="font-size: 10px; margin-top:5px">${resposta.id} (ID)</p>
+                            </div>
+                            <div class="box2" style="margin-top: 10px;">
+
+                                <p style="font-size: 10px;">Classificação Geral : </p>
+
+                                <div class="box-nota" style="display: flex; align-items: center; margin-top: 10px;">
+                                    <div class="nota-radius"
+                                        style="background-color:#032541; width: 40px; height: 40px; border-radius: 50%; display: flex; justify-content: center; align-items: center; position: relative; overflow: hidden;">
+                                        <div class="barra"
+                                            style="background-color: #21D07A; height: 81%; width: 120%; position: absolute; bottom: 0px; left: 0px; transform: rotate(-35deg);">
+                                        </div>
+                                        <div class="box"
+                                            style="background-color:#181D23; width: 85%; height: 85%; border-radius: 50%; display: flex; align-items: center; justify-content: center; z-index: 99;">
+                                            <div class="number" style="font-size: 16px;">
+                                                79
+                                            </div>
+                                            <div class="porcent" style="font-size: 8px; margin-top: -5px;">
+                                                %
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <p class="m-sinop" style="font-size: 14px; margin-top: 20px;">${resposta.overview}</p>
+                                <p class="m-sinop" style="font-size: 16px; margin-top: 20px; color: #${resposta.id}">${resposta.tagline}</p>
+
+                            </div>
+                        </div>
+
+                    </div> `;
+
+
+                    let renderPlayer = document.getElementById('renderPlayer');
+                    renderPlayer.innerHTML = `
+                        <div class="box-titleRenders" style="display: flex; flex-direction: column; align-items: center;">
+                            <p style=" margin-top: 15px; color: #21D07A;">Assista Com Anuncios  </p>
+                            <p style=" font-size: 10px;"> Click Aqui para abrir o Player (será redirecionado) </p>
+                            <p style=" font-size: 15px; margin-top: 10px;">👇</p>
+                        </div>
+
+                        <div class="" onclick="window.location.href=('https://superflix.mov/categoria/lancamentos/')"
+                            style="width: 80%; max-width: 550px; min-height: 250px; border-radius: 10px; margin-top: 20px; cursor: pointer;">
+                            <p style=" font-size: 10px;"> OPÇÃO 01 </p>
+                            <img src="./img/midaPlayer.png" alt="" style="width: 100%;">
+                        </div>
+
+                        <div class="" onclick="window.location.href=('https://siteparaverfilmes.com/categoria/lancamentos/')"
+                            style="width: 80%; max-width: 550px; min-height: 250px; border-radius: 10px; margin-top: 20px; cursor: pointer;">
+                            <p style=" font-size: 10px;"> OPÇÃO 02</p>
+                            <img src="./img/midaPlayer.png" alt="" style="width: 100%;">
+                        </div>
+
+                    `;
+                }
+            }
+            ajax.send();
+        }
+
+
+
+
+
+
+        function getSimilar(filtro) {
+            let ajax = new XMLHttpRequest();
+            ajax.open('GET', `https://api.themoviedb.org/3/movie/${filtro}/recommendations?language=pt&api_key=9ad6ab6d85229f1eea1b1ca48f55b4b9`);
+            ajax.onreadystatechange = () => {
+                if (ajax.readyState == 4 && ajax.status == 200) {
+                    console.log(JSON.parse(ajax.response).results);
+
+                    let rendercapas = document.getElementById('boxRenderMaisvotados');
+                    rendercapas.innerHTML = '';
+                    JSON.parse(ajax.response).results.slice(0, 10).forEach((key) => {
+                        let porcent = key.vote_average.toString().replace('.', '').substr(0, 2);
+                        console.log(porcent);
+                        rendercapas.innerHTML += `
+                        
+                        <div class="capa" style="height: auto; width: 200px; margin: 10px;" onclick="window.location.href=('../detalhes/#${key.id}'), window.location.reload();">
+                            <div class="boxIMG" style="width: 100%; height: auto; overflow: hidden; border-radius: 10px;">
+                                <img src="https://media.themoviedb.org/t/p/w220_and_h330_face${key.poster_path}" alt="" style="width: 100%;">
+                            </div>
+
+                            <div class="box-nota" style="margin-top: -15px; margin-left: 10px;">
+                                <div class="nota-radius" style="background-color:#032541; width: 40px; height: 40px; border-radius: 50%; display: flex; justify-content: center; align-items: center; position: relative; overflow: hidden;">
+                                    <div class="barra" style="background-color: #21D07A; height: ${porcent}%; width: 120%; position: absolute; bottom: 0px; left: 0px; transform: rotate(-35deg);"></div>
+                                    <div class="box" style="background-color:#181D23; width: 85%; height: 85%; border-radius: 50%; display: flex; align-items: center; justify-content: center; z-index: 99;">
+                                        <div class="number" style="font-size: 16px;">
+                                            ${key.vote_average.toString().replace('.', '').substr(0, 2)}
+                                        </div>
+                                        <div class="porcent" style="font-size: 8px; margin-top: -5px;">
+                                            %
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="boxLegenda" style="padding: 5px; margin-top: 8px;">
+                                <span>
+                                    <p style="text-overflow:hidden; ">${key.title}</p>
+                                    <p style="font-weight: 100; font-size: 12px;">${key.release_date.substr(0, 4)}</p>
+                                </span>
+                            </div>
+                        </div>
+                        
+                    
+                    `;
+                    });
+                }
+            }
+            ajax.send();
+        }
+    </script>
+
+</body>
+
+</html>
